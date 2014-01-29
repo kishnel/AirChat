@@ -46,7 +46,7 @@ static NSString * const kChatCellIdentifier										= @"ChatCell";
 
 	[_table registerNib:[UINib nibWithNibName:kChatCellIdentifier bundle:nil] forCellReuseIdentifier:kChatCellIdentifier];
 
-	self.title					= NSLocalizedString(@"Nearby users", nil);
+	self.title					= NSLocalizedString(@"Nearby users!", nil);
 	
 	self.users					= [NSMutableSet new];
 	
