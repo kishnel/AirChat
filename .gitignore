@@ -9,3 +9,8 @@ AirChat.xcodeproj/project.xcworkspace/xcuserdata/marcellomascia.xcuserdatad/User
 
 *.xcuserstate
 
+*.xcworkspacedata
+
+*.xcscheme
+
+*.plist
