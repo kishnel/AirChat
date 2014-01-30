@@ -72,34 +72,18 @@ NSString * const kUserIDKey														= @"userID";
 
 - (Chat *)chatWithUser:(User *)user
 {
-	Chat *result = nil;
+	NSPredicate *predicate	= [NSPredicate predicateWithFormat:@"connectedUser = %@", user];
+	NSArray *filteredChats	= [self.chats filteredArrayUsingPredicate:predicate];
 	
-	for (Chat *chat in self.chats)
-	{
-		if ([chat.connectedUser isEqual:user])
-		{
-			result = chat;
-			break;
-		}
-	}
-	
-	return result;
+	return filteredChats.firstObject;
 }
 
 - (Chat *)chatForPeerID:(MCPeerID *)peerID
 {
-	Chat *result = nil;
-	
-	for (Chat *chat in self.chats)
-	{
-		if ([chat.members containsObject:peerID])
-		{
-			result = chat;
-			break;
-		}
-	}
-	
-	return result;
+	NSPredicate *predicate	= [NSPredicate predicateWithFormat:@"%@ IN members", peerID];
+	NSArray *filteredChats	= [self.chats filteredArrayUsingPredicate:predicate];
+
+	return filteredChats.firstObject;
 }
 
 
