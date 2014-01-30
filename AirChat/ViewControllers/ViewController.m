@@ -19,12 +19,9 @@ static NSString * const kChatCellIdentifier										= @"ChatCell";
 
 @interface ViewController () < MCNearbyServiceBrowserDelegate >
 
-
-//@property (nonatomic, strong) NSMutableSet *									peers;
 @property (nonatomic, strong) NSMutableSet *									users;
 @property (nonatomic, readonly) NSArray *										sortedUsers;
 @property (nonatomic, strong) MCNearbyServiceBrowser *							browser;
-
 
 @end
 
@@ -41,25 +38,22 @@ static NSString * const kChatCellIdentifier										= @"ChatCell";
 {
 	[super viewDidLoad];
 	
-	UIBarButtonItem *backButton				= [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"\n", nil) style:UIBarButtonItemStyleBordered target:nil action:nil];
-	self.navigationItem.backBarButtonItem	= backButton;
-
-	[_table registerNib:[UINib nibWithNibName:kChatCellIdentifier bundle:nil] forCellReuseIdentifier:kChatCellIdentifier];
-
 	self.title					= NSLocalizedString(@"Nearby users!", nil);
 	
+	[_table registerNib:[UINib nibWithNibName:kChatCellIdentifier bundle:nil] forCellReuseIdentifier:kChatCellIdentifier];
+
 	self.users					= [NSMutableSet new];
 	
 	CoreController *cc			= [CoreController sharedController];
+
 	NSNotificationCenter *nc	= [NSNotificationCenter defaultCenter];
+	[nc addObserver:self selector:@selector(chatDidStart:) name:kNotificationChatDidStart object:nil];
+	[nc addObserver:self selector:@selector(chatStateConnected:) name:kNotificationChatStateConnected object:nil];
+	[nc addObserver:self selector:@selector(chatStateNotConnected:) name:kNotificationChatStateNotConnected object:nil];
 	
 	self.browser				= [[MCNearbyServiceBrowser alloc] initWithPeer:cc.myPeerID serviceType:kServiceType];
 	self.browser.delegate		= self;
 	[self.browser startBrowsingForPeers];
-	
-	[nc addObserver:self selector:@selector(chatDidStart:) name:kNotificationChatDidStart object:nil];
-	[nc addObserver:self selector:@selector(chatStateConnected:) name:kNotificationChatStateConnected object:nil];
-	[nc addObserver:self selector:@selector(chatStateNotConnected:) name:kNotificationChatStateNotConnected object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -68,6 +62,7 @@ static NSString * const kChatCellIdentifier										= @"ChatCell";
 	
 	[_table deselectRowAtIndexPath:_table.indexPathForSelectedRow animated:animated];
 }
+
 
 #pragma mark - MCNearbyServiceBrowser delegate methods
 
@@ -104,12 +99,15 @@ static NSString * const kChatCellIdentifier										= @"ChatCell";
 #pragma mark -
 
 
-// This method gets called when the the remote peer accepts an invite
 - (void)chatDidStart:(NSNotification *)notification
 {
+	// This method gets called when the the remote peer accepts an invite
 	Chat *chat = notification.object;
 	
-	[self showChat:chat];
+	if([chat isKindOfClass:[Chat class]])
+	{
+		[self showChat:chat];
+	}
 }
 
 - (void)showChat:(Chat *)chat
@@ -144,9 +142,12 @@ static NSString * const kChatCellIdentifier										= @"ChatCell";
 
 - (void)chatStateConnected:(NSNotification *)notification
 {
-	Chat *chat			= notification.object;
+	Chat *chat = notification.object;
 	
-	[self showChat:chat];
+	if([chat isKindOfClass:[Chat class]])
+	{
+		[self showChat:chat];
+	}
 }
 
 - (void)chatStateNotConnected:(NSNotification *)notification

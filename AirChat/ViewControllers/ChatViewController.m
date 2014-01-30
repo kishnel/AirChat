@@ -38,7 +38,7 @@ static NSString * const kMessageCellIdentifier									= @"MessageCell";
 {
 	if ((self = [super init]))
 	{
-		_chat				= chat;
+		_chat = chat;
 	}
 
 	return self;
@@ -48,7 +48,7 @@ static NSString * const kMessageCellIdentifier									= @"MessageCell";
 {
 	[super viewDidLoad];
 
-	self.title						= _chat.title;
+	self.title = _chat.title;
 	
 	self.navigationItem.rightBarButtonItem = _exitButton;
 	
@@ -67,13 +67,6 @@ static NSString * const kMessageCellIdentifier									= @"MessageCell";
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 
 	[_textField becomeFirstResponder];
-	
-	if(self.messages.count)
-	{
-		NSInteger index				= self.messages.count - 1;
-		NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
-		[_table scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
-	}
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -123,11 +116,6 @@ static NSString * const kMessageCellIdentifier									= @"MessageCell";
 
 #pragma mark - Table stuff
 
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
