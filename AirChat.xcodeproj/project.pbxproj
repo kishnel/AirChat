@@ -63,9 +63,6 @@
 		68D4DD5217C8B84E00B71528 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		68D4DD5417C8B84E00B71528 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		68D4DD5B17C8B84E00B71528 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		68D4DD6317C8B84E00B71528 /* AirChatTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AirChatTests-Info.plist"; sourceTree = "<group>"; };
-		68D4DD6517C8B84E00B71528 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		68D4DD6717C8B84E00B71528 /* AirChatTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AirChatTests.m; sourceTree = "<group>"; };
 		68D4DD7117C8BB0B00B71528 /* MultipeerConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultipeerConnectivity.framework; path = System/Library/Frameworks/MultipeerConnectivity.framework; sourceTree = SDKROOT; };
 		68F7969F17C9077E000B90B8 /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
 		68F796A017C9077E000B90B8 /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
@@ -93,7 +90,6 @@
 			isa = PBXGroup;
 			children = (
 				68D4DD4217C8B84E00B71528 /* AirChat */,
-				68D4DD6117C8B84E00B71528 /* AirChatTests */,
 				68D4DD3B17C8B84E00B71528 /* Frameworks */,
 				68D4DD3A17C8B84E00B71528 /* Products */,
 			);
@@ -161,24 +157,6 @@
 				68D4DD4517C8B84E00B71528 /* InfoPlist.strings */,
 				68D4DD4817C8B84E00B71528 /* main.m */,
 				68D4DD4A17C8B84E00B71528 /* AirChat-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		68D4DD6117C8B84E00B71528 /* AirChatTests */ = {
-			isa = PBXGroup;
-			children = (
-				68D4DD6717C8B84E00B71528 /* AirChatTests.m */,
-				68D4DD6217C8B84E00B71528 /* Supporting Files */,
-			);
-			path = AirChatTests;
-			sourceTree = "<group>";
-		};
-		68D4DD6217C8B84E00B71528 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				68D4DD6317C8B84E00B71528 /* AirChatTests-Info.plist */,
-				68D4DD6417C8B84E00B71528 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -288,14 +266,6 @@
 				68D4DD4F17C8B84E00B71528 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		68D4DD6417C8B84E00B71528 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				68D4DD6517C8B84E00B71528 /* en */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
